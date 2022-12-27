@@ -7,12 +7,15 @@ import MyTask from "../Pages/MyTask/MyTask";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import UpdateTask from "../Pages/UpdateTask/UpdateTask";
+import DisplayError from "../Pages/DisplayError/DisplayError";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
@@ -37,6 +40,11 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/update/task/:id',
+                loader: ({params})=>fetch(`http://localhost:5000/task/${params.id}`),
+                element: <UpdateTask></UpdateTask>
             },
         ]
     }

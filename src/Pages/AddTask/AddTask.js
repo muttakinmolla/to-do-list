@@ -6,6 +6,7 @@ import ReactDatePicker from 'react-datepicker';
 import DatePicker from "react-datepicker";
 import { DayPicker } from 'react-day-picker';
 import { toast } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import Loader from '../../Shared/Loader/Loader';
 import TaskTable from '../TaskTable/TaskTable';
@@ -27,9 +28,7 @@ const AddTask = () => {
         }
     });
 
-    // if (isLoading) {
-    //     return <Loader></Loader>
-    // }
+
 
     const handleTaskSubmit = (e) => {
         e.preventDefault();
@@ -65,33 +64,38 @@ const AddTask = () => {
     }
 
     return (
-        <div className=' mt-10 grid grid-cols-3'>
-            <div className='px-3 drop-shadow-md '>
-                <h1>Add Your Task</h1>
-                <form onSubmit={handleTaskSubmit}>
-                    <div className="">
-                        <Input type="text" placeholder='write your task' name='task' className='text-white-900' />
-                    </div>
-                    <div className="mt-3">
-                        <Input type="text" placeholder='Place Image Link' name='image' />
-                    </div>
-                    <div className="mt-3">
-                        <DayPicker
-                            mode='single'
-                            selected={selectedDate}
-                            onSelect={setSelectedDate}
+        <div className='mt-10'>
+            <Button color='amber' className='mb-3 mx-auto'>
+                <Link to='/completedTask'>Completed Task</Link>
+            </Button>
+            <div className='grid grid-cols-3'>
+                <div className='px-3 drop-shadow-md '>
+                    <h1>Add Your Task</h1>
+                    <form onSubmit={handleTaskSubmit}>
+                        <div className="">
+                            <Input type="text" placeholder='write your task' name='task' className='text-white-900' />
+                        </div>
+                        <div className="mt-3">
+                            <Input type="text" placeholder='Place Image Link' name='image' />
+                        </div>
+                        <div className="mt-3">
+                            <DayPicker
+                                mode='single'
+                                selected={selectedDate}
+                                onSelect={setSelectedDate}
 
-                        />
-                    </div>
-                    <div className='mt-3 text-center'>
-                        <Button type='submit' color="amber">Add Task</Button>
-                    </div>
-                </form>
-            </div>
+                            />
+                        </div>
+                        <div className='mt-3 text-center'>
+                            <Button type='submit' color="amber">Add Task</Button>
+                        </div>
+                    </form>
+                </div>
 
-            <div className='col-span-2'>
-                <div className='ms-auto'>
-                   <TaskTable tasks={tasks}></TaskTable>
+                <div className='col-span-2'>
+                    <div className='ms-auto'>
+                        <TaskTable tasks={tasks}></TaskTable>
+                    </div>
                 </div>
             </div>
         </div>
