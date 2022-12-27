@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Button, Card, CardBody, CardFooter, CardHeader, Checkbox, Input, Typography } from '@material-tailwind/react';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
@@ -11,6 +11,10 @@ const Login = () => {
     const { googleSignIn, signInEmailPassword } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
 
     const handleGoogleSignIn = () => {
@@ -20,6 +24,7 @@ const Login = () => {
 
                 setError('');
                 toast.success('successfully login');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 setError(error.message);
@@ -37,6 +42,7 @@ const Login = () => {
 
                 setError('');
                 form.reset();
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 setError(error.message)

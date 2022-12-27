@@ -24,7 +24,6 @@ const Register = () => {
                     userType: 'buyer',
                 }
 
-
                 setError('');
                 toast.success('successfully login');
             })
@@ -99,12 +98,12 @@ const Register = () => {
                         Don't have an account?
                         <Typography
                             as="a"
-                            href="#signup"
+                            href="/login"
                             variant="small"
                             color="amber"
                             className="ml-1 font-bold"
                         >
-                            Sign up
+                            Sign In
                         </Typography>
                     </Typography>
                 </CardFooter>
