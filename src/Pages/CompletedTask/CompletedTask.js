@@ -11,7 +11,7 @@ const CompletedTask = () => {
     const { data: tasks, isLoading, refetch } = useQuery({
         queryKey: ['tasks'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/taskComplete?email=${user?.email}`, {
+            const res = await fetch(`https://todolist-server-five.vercel.app/taskComplete?email=${user?.email}`, {
 
             })
             const data = await res.json();
@@ -21,7 +21,7 @@ const CompletedTask = () => {
 
     const handleDeleteUser = (task) => {
        
-        fetch(`http://localhost:5000/task/${task._id}`, {
+        fetch(`https://todolist-server-five.vercel.app/task/${task._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

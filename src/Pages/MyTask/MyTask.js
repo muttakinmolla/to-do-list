@@ -10,7 +10,7 @@ const MyTask = () => {
     const { data: tasks, isLoading, refetch } = useQuery({
         queryKey: ['tasks'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/task?email=${user?.email}`, {
+            const res = await fetch(`https://todolist-server-five.vercel.app/task?email=${user?.email}`, {
 
             })
             const data = await res.json();
@@ -20,7 +20,7 @@ const MyTask = () => {
 
     const handleDeleteUser = (task) => {
        
-        fetch(`http://localhost:5000/task/${task._id}`, {
+        fetch(`https://todolist-server-five.vercel.app/task/${task._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -39,7 +39,7 @@ const MyTask = () => {
             comment: updateComment,
         }
 
-        fetch(`http://localhost:5000/task/status/${task._id}`, {
+        fetch(`https://todolist-server-five.vercel.app/task/status/${task._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

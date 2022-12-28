@@ -20,7 +20,7 @@ const AddTask = () => {
     const { data: tasks, isLoading, refetch } = useQuery({
         queryKey: ['tasks'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/task?email=${user?.email}`, {
+            const res = await fetch(`https://todolist-server-five.vercel.app/task?email=${user?.email}`, {
 
             })
             const data = await res.json();
@@ -44,7 +44,7 @@ const AddTask = () => {
         };
         console.log(task);
 
-        fetch('http://localhost:5000/addTask', {
+        fetch('https://todolist-server-five.vercel.app/addTask', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

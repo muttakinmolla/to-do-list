@@ -28,7 +28,7 @@ const UpdateTask = () => {
             status: status
         };
         // console.log(task);
-        fetch(`http://localhost:5000/task/update/${_id}`, {
+        fetch(`https://todolist-server-five.vercel.app/task/update/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

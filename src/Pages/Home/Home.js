@@ -20,7 +20,7 @@ const Home = () => {
                 status: 'pending'
             };
 
-            fetch('http://localhost:5000/addTask', {
+            fetch('https://todolist-server-five.vercel.app/addTask', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

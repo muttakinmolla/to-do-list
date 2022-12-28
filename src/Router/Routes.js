@@ -43,7 +43,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/update/task/:id',
-                loader: ({params})=>fetch(`http://localhost:5000/task/${params.id}`),
+                loader: ({params})=>fetch(`https://todolist-server-five.vercel.app/task/${params.id}`),
                 element: <UpdateTask></UpdateTask>
             },
         ]
