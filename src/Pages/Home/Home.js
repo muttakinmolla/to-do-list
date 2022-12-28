@@ -4,39 +4,42 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Home = () => {
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleTaskSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
 
-        const task = {
-            note: form.task.value,
-            image: '',
-            taskDate:  '',
-            email: user?.email,
-            status: 'pending'
-        };
-        console.log(task);
+        if (user?.email) {
+            const task = {
+                note: form.task.value,
+                image: '',
+                taskDate: '',
+                email: user?.email,
+                status: 'pending'
+            };
 
-        fetch('http://localhost:5000/addTask', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(task)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                toast.success('task is added successfully');
-                form.reset();
-                navigate('/myTask')
+            fetch('http://localhost:5000/addTask', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(task)
             })
-            .catch(error => {
-                console.log(error);
-            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    toast.success('task is added successfully');
+                    form.reset();
+                    navigate('/myTask')
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }else{
+            toast.error('To note something please login first');
+        }
 
     }
     return (

@@ -5,14 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faEdit, faEye, faHourglassEnd, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-hot-toast';
 
-const TaskTable = ({ tasks, handleDelteUser, handleTaskStatusUpdate }) => {
+const TaskTable = ({ tasks, handleDeleteUser, handleTaskStatusUpdate }) => {
     const location = useLocation();
+
 
 
     return (
         <div>
-            <section className='pl-10'>
-               
+            <section className=''>
+
                 {/* {loct.pathname} */}
                 <div className="tbl-header">
                     <table cellPadding="0" cellSpacing="0" border="0">
@@ -22,6 +23,12 @@ const TaskTable = ({ tasks, handleDelteUser, handleTaskStatusUpdate }) => {
                                 <th>Note</th>
                                 <th>Image</th>
                                 <th>Date</th>
+
+
+                                {
+                                    location?.pathname === '/myTask' && <th>Comment</th>
+                                }
+
                                 {
                                     location?.pathname === '/addTask' ? '' : <th>Action</th>
                                 }
@@ -50,16 +57,36 @@ const TaskTable = ({ tasks, handleDelteUser, handleTaskStatusUpdate }) => {
                                     </td>
 
                                     {
+                                        location?.pathname === '/myTask' && task.status === 'pending' ? <>
+                                            <td >
+                                                <input type="text" name='comment' id={task._id} className='lg:p-2 rounded' />
+
+                                                <button type="button" onClick={() => handleTaskStatusUpdate(task)} className="align-items-center justify-center inline-block px-4 py-1.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">save</button>
+                                                
+                                            </td>
+
+                                        </>
+                                            :
+                                            <>
+                                                <td>
+
+                                                </td>
+                                            </>
+                                    }
+
+
+
+                                    {
                                         location?.pathname === '/addTask' ? ''
                                             :
                                             <td>
 
-                                                <FontAwesomeIcon onClick={() => handleDelteUser(task)} className='text-red-900 text-xl' icon={faTrash}>
+                                                <FontAwesomeIcon onClick={() => handleDeleteUser(task)} className='text-red-900 text-xl' icon={faTrash}>
 
                                                 </FontAwesomeIcon>
 
                                                 {
-                                                    task.status === 'pending' ? <FontAwesomeIcon onClick={() => handleTaskStatusUpdate(task._id)} icon={faHourglassEnd} className='pl-5 text-xl'></FontAwesomeIcon> : <FontAwesomeIcon icon={faCircleCheck} className='pl-5 text-xl text-yellow-300'></FontAwesomeIcon>
+                                                    task.status === 'pending' ? <FontAwesomeIcon icon={faHourglassEnd} className='pl-5 text-xl'></FontAwesomeIcon> : <FontAwesomeIcon icon={faCircleCheck} className='pl-5 text-xl text-yellow-300'></FontAwesomeIcon>
                                                 }
 
                                                 <Link to={`/update/task/${task._id}`}><FontAwesomeIcon icon={faEdit} className='pl-5 text-xl text-yellow-300'></FontAwesomeIcon></Link>
@@ -71,8 +98,8 @@ const TaskTable = ({ tasks, handleDelteUser, handleTaskStatusUpdate }) => {
                         </tbody>
                     </table>
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 };
 

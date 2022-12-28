@@ -39,7 +39,8 @@ const AddTask = () => {
             image: form.image.value,
             taskDate: date,
             email: user?.email,
-            status: 'pending'
+            status: 'pending',
+            comment: ''
         };
         console.log(task);
 
@@ -68,8 +69,8 @@ const AddTask = () => {
             <Button color='amber' className='mb-3 mx-auto'>
                 <Link to='/completedTask'>Completed Task</Link>
             </Button>
-            <div className='grid grid-cols-3'>
-                <div className='px-3 drop-shadow-md '>
+            <div className='grid lg:grid-cols-3 sm:grid-cols-1'>
+                <div className='px-3 drop-shadow-md sm:w-full'>
                     <h1>Add Your Task</h1>
                     <form onSubmit={handleTaskSubmit}>
                         <div className="">
@@ -92,8 +93,8 @@ const AddTask = () => {
                     </form>
                 </div>
 
-                <div className='col-span-2'>
-                    <div className='ms-auto'>
+                <div className='col-span-2 sm:mt-5'>
+                    <div className='lg:ms-auto'>
                         <TaskTable tasks={tasks}></TaskTable>
                     </div>
                 </div>

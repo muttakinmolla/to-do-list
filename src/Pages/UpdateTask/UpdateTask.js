@@ -27,7 +27,7 @@ const UpdateTask = () => {
             email: user?.email,
             status: status
         };
-        console.log(task);
+        // console.log(task);
         fetch(`http://localhost:5000/task/update/${_id}`, {
             method: 'PUT',
             headers: {
@@ -45,8 +45,8 @@ const UpdateTask = () => {
             })
     }
     return (
-        <div className='grid grid-cols-1 place-items-center'>
-            <div className='drop-shadow-md'>
+        <div className='flex flex-row" place-items-center'>
+            <div className='basis-1/2 m-auto drop-shadow-md'>
                 <h1>Add Your Task</h1>
                 <form onSubmit={handleTaskUpdate}>
                     <div className="">
@@ -58,11 +58,12 @@ const UpdateTask = () => {
                     <div className="mt-3">
                         <Input type="text" defaultValue={taskDate} name='date' />
                     </div>
-                    <div className="mt-3">
+                    <div className="mt-3 ">
                         <DayPicker
                             mode='single'
                             selected={selectedDate}
                             onSelect={setSelectedDate}
+                            
 
                         />
                     </div>

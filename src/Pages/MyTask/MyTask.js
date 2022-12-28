@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import Loader from '../../Shared/Loader/Loader';
 import TaskTable from '../TaskTable/TaskTable';
 
 const MyTask = () => {
@@ -17,7 +18,8 @@ const MyTask = () => {
         }
     });
 
-    const handleDelteUser = (task) => {
+    const handleDeleteUser = (task) => {
+       
         fetch(`http://localhost:5000/task/${task._id}`, {
             method: 'DELETE'
         })
@@ -30,23 +32,36 @@ const MyTask = () => {
             })
     };
 
-    const handleTaskStatusUpdate = id => {
-        fetch(`http://localhost:5000/task/status/${id}`, {
-            method: 'PUT'
+    const handleTaskStatusUpdate = task => {
+        const updateComment = document.getElementById(task._id).value;
+        console.log(updateComment)
+        const updateTask = {
+            comment: updateComment,
+        }
+
+        fetch(`http://localhost:5000/task/status/${task._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateTask)
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    toast.success('Order submit successfully');
+                    toast.success('status update successfully');
                     refetch();
                 }
             })
     }
+    if (isLoading) {
+        return <Loader></Loader>
+    }
 
     return (
         <div>
-             <h1>My Task</h1>
-            <TaskTable tasks={tasks} handleDelteUser={handleDelteUser} handleTaskStatusUpdate={handleTaskStatusUpdate}></TaskTable>
+            <h1>My Task</h1>
+            <TaskTable tasks={tasks} handleDeleteUser={handleDeleteUser} handleTaskStatusUpdate={handleTaskStatusUpdate}></TaskTable>
         </div>
     );
 };
