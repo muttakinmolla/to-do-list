@@ -59,16 +59,17 @@ const Header = () => {
 
     return (
         <div>
-            <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
+            <Navbar className="mx-auto  py-2 px-4 ">
                 <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-                    <Typography
+                    {/* <Typography
                         as="a"
-                        to="/"
+                       
                         variant="small"
                         className="mr-4 cursor-pointer py-1.5 font-normal"
-                    >
-                        <span>To-Do List</span>
-                    </Typography>
+                    > */}
+                        <Link to='/'>To-Do-List</Link>
+                        {/* <span>To-Do List</span> */}
+                    {/* </Typography> */}
                     <div className="hidden lg:block">{navList}</div>
                     {
                         user?.uid ?
@@ -76,7 +77,6 @@ const Header = () => {
                                 <div className="dropdown">
                                     <button color="amber" className='text-yellow-800'>Profile</button>
                                     <div className="dropdown-options">
-                                        <a href="#">Dashboard</a>
                                         <a href="#">{
                                             user?.displayName && <p className='m-0 p-0'>{user?.displayName}</p>
                                         }</a>

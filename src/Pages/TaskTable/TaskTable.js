@@ -2,18 +2,17 @@ import React from 'react';
 import { format } from 'date-fns';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleCheck, faEye, faHourglassEnd, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faEdit, faEye, faHourglassEnd, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-hot-toast';
 
 const TaskTable = ({ tasks, handleDelteUser, handleTaskStatusUpdate }) => {
-    console.log(tasks)
     const location = useLocation();
 
 
     return (
         <div>
             <section className='pl-10'>
-                <h1>My Task</h1>
+               
                 {/* {loct.pathname} */}
                 <div className="tbl-header">
                     <table cellPadding="0" cellSpacing="0" border="0">
@@ -63,7 +62,7 @@ const TaskTable = ({ tasks, handleDelteUser, handleTaskStatusUpdate }) => {
                                                     task.status === 'pending' ? <FontAwesomeIcon onClick={() => handleTaskStatusUpdate(task._id)} icon={faHourglassEnd} className='pl-5 text-xl'></FontAwesomeIcon> : <FontAwesomeIcon icon={faCircleCheck} className='pl-5 text-xl text-yellow-300'></FontAwesomeIcon>
                                                 }
 
-                                                <Link to={`/update/task/${task._id}`}><FontAwesomeIcon icon={faEye} className='pl-5 text-xl text-yellow-300'></FontAwesomeIcon></Link>
+                                                <Link to={`/update/task/${task._id}`}><FontAwesomeIcon icon={faEdit} className='pl-5 text-xl text-yellow-300'></FontAwesomeIcon></Link>
 
                                             </td>
                                     }
