@@ -24,13 +24,12 @@ const TaskTable = ({ tasks, handleDeleteUser, handleTaskStatusUpdate }) => {
                                 <th>Image</th>
                                 <th>Date</th>
 
-
                                 {
-                                    location?.pathname === '/myTask' && <th>Comment</th>
+                                    location?.pathname === '/myTask' ? <th>Comment</th> : <th></th>
                                 }
 
                                 {
-                                    location?.pathname === '/addTask' ? '' : <th>Action</th>
+                                    location?.pathname === '/addTask' ? '': <th>Action</th>
                                 }
 
                             </tr>
