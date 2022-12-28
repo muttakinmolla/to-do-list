@@ -11,6 +11,18 @@
     position: relative;
   }
   
+.active{
+  background-color: orange;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 7px;
+}
+
+.active:hover{
+  background-color: #000;
+  transition: 1s ease-in-out;
+}
+
   button{
     border:none;
     border-radius:5px;

@@ -1,6 +1,6 @@
 import { Button, IconButton, MobileNav, Navbar, Typography } from '@material-tailwind/react';
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import './Header.css';
 
@@ -29,9 +29,9 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="/addTask" className="flex items-center">
+                <NavLink  to="/addTask" className="flex items-center {({isActive})=> isActive? 'active' : undefined}">
                     Add Task
-                </Link>
+                </NavLink>
             </Typography>
             <Typography
                 as="li"
@@ -39,9 +39,9 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="/myTask" className="flex items-center">
+                <NavLink to="/myTask" className="flex items-center {({isActive})=> isActive? 'active' : undefined}">
                     My Task
-                </Link>
+                </NavLink>
             </Typography>
             <Typography
                 as="li"
@@ -49,9 +49,9 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="/completedTask" className="flex items-center">
+                <NavLink to="/completedTask" className="flex items-center {({isActive})=> isActive? 'active' : undefined}">
                     Completed Task
-                </Link>
+                </NavLink>
             </Typography>
 
         </ul>
@@ -67,7 +67,7 @@ const Header = () => {
                         variant="small"
                         className="mr-4 cursor-pointer py-1.5 font-normal"
                     > */}
-                        <Link to='/'>To-Do-List</Link>
+                        <NavLink className="{({isActive})=> isActive? 'active' : undefined}" to='/'>To-Do-List</NavLink>
                         {/* <span>To-Do List</span> */}
                     {/* </Typography> */}
                     <div className="hidden lg:block">{navList}</div>
@@ -88,7 +88,7 @@ const Header = () => {
                             :
 
                             <Button color="amber" size="sm" className="hidden lg:inline-block">
-                                <Link to='/login'>login</Link>
+                                <NavLink className="{({isActive})=> isActive? 'active' : undefined}" to='/login'>login</NavLink>
                             </Button>
                     }
 
