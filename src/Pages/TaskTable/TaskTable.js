@@ -46,7 +46,7 @@ const TaskTable = ({ tasks, handleDeleteUser, handleTaskStatusUpdate }) => {
                                         {task.note}
                                     </td>
                                     <td>
-                                        <img className='object-fit h-20 w-50' src={task.image} alt="" />
+                                        <img className='object-fit h-20 w-50' src={task.imageUrl} alt="" />
                                     </td>
                                     <td>
                                         {
@@ -58,7 +58,7 @@ const TaskTable = ({ tasks, handleDeleteUser, handleTaskStatusUpdate }) => {
                                     {
                                         location?.pathname === '/myTask' && task.status === 'pending' ? <>
                                             <td >
-                                                <input type="text" name='comment' id={task._id} className='lg:p-2 rounded' />
+                                                <input type="text" name='comment' id={task._id} className='lg:p-2 rounded text-black' />
 
                                                 <button type="button" onClick={() => handleTaskStatusUpdate(task)} className="align-items-center justify-center inline-block px-4 py-1.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">save</button>
                                                 
